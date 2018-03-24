@@ -62,7 +62,7 @@ class Msfrpc:
     auth = self.call("auth.login", [user, password])
     try:
       if auth[b'result'] == b'success':
-        self.token = auth[b'token']
+        self.token = auth[b'token'].decode('utf8')
         return True
     except:
       raise self.MsfAuthError("MsfRPC: Authentication failed")
