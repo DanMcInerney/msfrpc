@@ -61,8 +61,8 @@ class Msfrpc:
   def login(self, user, password):
     auth = self.call("auth.login", [user, password])
     try:
-      if auth[b'result'] == 'success':
-        self.token = auth['token']
+      if auth[b'result'] == b'success':
+        self.token = auth[b'token']
         return True
     except:
       raise self.MsfAuthError("MsfRPC: Authentication failed")
