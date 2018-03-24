@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # MSF-RPC - A  Python library to facilitate MSG-RPC communication with Metasploit
 # Ryan Linn  - RLinn@trustwave.com, Marcello Salvati - byt3bl33d3r@gmail.com
 # Copyright (C) 2011 Trustwave
@@ -61,7 +61,7 @@ class Msfrpc:
   def login(self, user, password):
     auth = self.call("auth.login", [user, password])
     try:
-      if auth['result'] == 'success':
+      if auth[b'result'] == 'success':
         self.token = auth['token']
         return True
     except:
@@ -79,9 +79,9 @@ if __name__ == '__main__':
   mod = client.call('module.exploits')
   
   # Grab the first item from the modules value of the returned dict
-  print "Compatible payloads for : %s\n" % mod['modules'][0]
+  print("Compatible payloads for : %s\n" % mod['modules'][0])
   
   # Get the list of compatible payloads for the first option
   ret = client.call('module.compatible_payloads',[mod['modules'][0]])
-  for i in (ret.get('payloads')):
-    print "\t%s" % i
+  for i in (ret.get(b'payloads')):
+    print("\t%s" % i)
